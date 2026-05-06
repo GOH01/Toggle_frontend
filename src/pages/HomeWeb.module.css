@@ -1,0 +1,816 @@
+.webContainer {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+  background-color: #0f172a; /* Deep dark slate representing the PC layout */
+  overflow: hidden;
+  font-family: var(--font-family);
+}
+
+.webHeader {
+  height: 70px;
+  background: rgba(15, 23, 42, 0.95);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+  z-index: 100;
+  flex-shrink: 0;
+}
+
+.logoGroup {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  cursor: pointer;
+  width: auto;
+}
+
+.logoMark {
+  width: auto;
+  height: 38px;
+  object-fit: contain;
+  object-position: center;
+  display: block;
+  flex-shrink: 0;
+}
+
+.logoText {
+  font-size: 1.35rem;
+  font-weight: 900;
+  color: white;
+  background: linear-gradient(135deg, #ffffff, #93c5fd);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.searchContainer {
+  position: relative;
+  z-index: 100;
+}
+
+.headerSearch {
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: var(--radius-full);
+  padding: 0.75rem 1.5rem;
+  width: 400px;
+  transition: all 0.2s;
+  position: relative;
+}
+
+.headerSearch:focus-within {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 0 0 4px rgba(96, 165, 250, 0.2);
+}
+
+/* 연관 검색어 드롭다운 (PC 웹) */
+.suggestionList {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  width: 100%;
+  background: rgba(15, 23, 42, 0.95);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  max-height: 350px;
+  overflow-y: auto;
+  z-index: 90;
+  list-style: none;
+  padding: 0.5rem 0;
+  margin: 0;
+  animation: fadeInDown 0.2s ease-out;
+}
+
+.suggestionList::-webkit-scrollbar {
+  width: 4px;
+}
+.suggestionList::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+}
+
+.suggestionItem {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.85rem 1.25rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.suggestionItem:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.suggestionIcon {
+  flex-shrink: 0;
+  background: rgba(59, 130, 246, 0.2);
+  padding: 0.35rem;
+  border-radius: 50%;
+  box-sizing: content-box;
+}
+
+.suggestionText {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  min-width: 0;
+}
+
+.suggestionName {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: white;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.suggestionAddress {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.5);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.headerInput {
+  border: none;
+  background: transparent;
+  outline: none;
+  color: white;
+  font-size: 1rem;
+  width: 100%;
+  margin-left: 0.75rem;
+  padding-right: 2rem;
+}
+
+.headerInput::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.clearSearchBtn {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1.5rem;
+  height: 1.5rem;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.9);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.clearSearchBtn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+}
+
+.navLinks {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.navBtn {
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: color 0.2s;
+}
+
+.navBtn:hover {
+  color: white;
+}
+
+.iconBtn {
+  color: rgba(255, 255, 255, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
+  transition: all 0.2s;
+}
+
+.iconBtn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: white;
+}
+
+.webBody {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+  background-color: var(--color-bg-default); /* 하얀 여백 배경 */
+}
+
+/* Sidebar styling for desktop */
+.sidebar {
+  width: 410px;
+  min-width: 410px;
+  flex-shrink: 0;
+  background: rgba(15, 23, 42, 0.95);
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  z-index: 10;
+  box-shadow: 4px 0 24px rgba(0, 0, 0, 0.3);
+}
+
+.sidebarHeader {
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.filterScroll {
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.filterScroll::-webkit-scrollbar {
+  display: none;
+}
+
+.filterChip {
+  white-space: nowrap;
+  padding: 0.6rem 1.25rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: var(--radius-full);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.filterChip:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.filterChip.active {
+  background: linear-gradient(135deg, #60a5fa, #c084fc);
+  color: white;
+  border-color: transparent;
+  box-shadow: 0 4px 15px rgba(96, 165, 250, 0.3);
+}
+
+.listContainer {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow: visible;
+  position: relative;
+}
+
+.listHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1.5rem 1.5rem 1rem 1.5rem;
+}
+
+.listTitle {
+  margin: 0;
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.listMetaRow {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  justify-content: space-between;
+  min-width: 0;
+}
+
+.listCount {
+  color: #60a5fa;
+  font-weight: 600;
+  font-size: 0.9rem;
+  background: rgba(96, 165, 250, 0.15);
+  padding: 0.15rem 0.5rem;
+  border-radius: var(--radius-full);
+  margin-top: 0.15rem;
+}
+
+.sortDropdown {
+  position: relative;
+  min-width: 240px;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+.sortTrigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.55rem;
+  width: 100%;
+  padding: 0.75rem 0.9rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.06);
+  color: white;
+  font-size: 0.88rem;
+  font-weight: 700;
+  text-align: left;
+  transition: all 0.2s ease;
+}
+
+.sortTrigger:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.sortTriggerLabel {
+  color: rgba(255, 255, 255, 0.7);
+  flex-shrink: 0;
+}
+
+.sortTriggerValue {
+  min-width: 0;
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: white;
+}
+
+.sortTriggerIcon {
+  flex-shrink: 0;
+  color: rgba(226, 232, 240, 0.72);
+  transition: transform 0.2s ease;
+}
+
+.sortTriggerIconOpen {
+  transform: rotate(180deg);
+}
+
+.sortMenu {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 0.5rem);
+  width: 100%;
+  min-width: 260px;
+  padding: 0.5rem;
+  border-radius: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(17, 24, 39, 0.98);
+  box-shadow: 0 18px 30px rgba(0, 0, 0, 0.35);
+  z-index: 30;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.sortMenuItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  width: 100%;
+  min-height: 3rem;
+  padding: 0.75rem 0.85rem;
+  border-radius: 0.9rem;
+  border: 1px solid transparent;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.84);
+  font-size: 0.85rem;
+  font-weight: 700;
+  transition: all 0.2s ease;
+  text-align: left;
+}
+
+.sortMenuItem:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: white;
+}
+
+.sortMenuItemActive {
+  background: rgba(59, 130, 246, 0.18);
+  border-color: rgba(96, 165, 250, 0.35);
+  color: white;
+}
+
+.sortMenuItemActive .sortOptionCheck {
+  border-color: rgba(147, 197, 253, 0.7);
+  background: rgba(96, 165, 250, 0.22);
+}
+
+.sortOptionText {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.1rem;
+  min-width: 0;
+}
+
+.sortOptionLabel {
+  line-height: 1.15;
+}
+
+.sortOptionHint {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: rgba(226, 232, 240, 0.55);
+  line-height: 1.2;
+}
+
+.sortMenuItemActive .sortOptionHint {
+  color: rgba(226, 232, 240, 0.75);
+}
+
+.sortOptionCheck {
+  width: 1.25rem;
+  height: 1.25rem;
+  flex-shrink: 0;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #93c5fd;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.cardsWrapper {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  min-height: 0;
+  padding: 0 1.25rem 2rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  overscroll-behavior: contain;
+}
+
+.cardsWrapper::-webkit-scrollbar {
+  width: 6px;
+}
+
+.cardsWrapper::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.cardsWrapper::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+}
+
+/* 메인 컨텐츠 영역 (지도 + 푸터) */
+.contentArea {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+  gap: 1.5rem;
+  overflow: hidden;
+}
+
+/* Map area */
+.mapArea {
+  flex: 1;
+  position: relative;
+  background-color: #cbd5e1; /* fallback */
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+  border: 1px solid var(--color-border);
+}
+
+.myLocationBtn {
+  position: absolute;
+  bottom: 2rem;
+  right: 2rem;
+  width: 50px;
+  height: 50px;
+  background: white;
+  border: 1px solid var(--color-border);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  z-index: 20;
+  transition: all 0.2s;
+}
+
+.myLocationBtn:hover {
+  background: var(--color-bg-hover);
+  transform: scale(1.05);
+}
+
+.mapSearchButtonWrap {
+  position: absolute;
+  top: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 40;
+}
+
+.mapSearchButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  min-height: 44px;
+  padding: 0.7rem 1.1rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(15, 23, 42, 0.95);
+  color: white;
+  font-weight: 700;
+  font-size: 0.9rem;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.35);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  cursor: pointer;
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+
+.mapSearchButton:active {
+  transform: scale(0.97);
+}
+
+/* 데스크탑 전용 하단 플로팅 바 & 푸터 */
+.webBottomNav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1rem;
+  flex-shrink: 0;
+}
+
+.navTabs {
+  display: flex;
+  background: white;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  padding: 0.5rem;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  gap: 0.25rem;
+}
+
+.webNavBtn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.25rem;
+  color: var(--color-text-secondary);
+  border-radius: var(--radius-full);
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: all 0.2s;
+}
+
+.webNavBtn:hover {
+  background: var(--color-bg-hover);
+  color: var(--color-text-primary);
+}
+
+.webNavBtn.active {
+  background: var(--color-primary);
+  color: white;
+}
+
+.webFooter {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  color: var(--color-text-muted);
+  font-size: 0.8rem;
+}
+
+.footerLinks {
+  display: flex;
+  gap: 1rem;
+}
+
+.footerLinks a {
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  transition: color 0.2s;
+  font-weight: 500;
+}
+
+.footerLinks a:hover {
+  color: var(--color-primary);
+  text-decoration: underline;
+}
+
+/* 지도 스마트 핀 및 내 위치 마커 추가 스타일 */
+.markerPlaceholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  animation: bounce 2s infinite ease-in-out;
+  transform: translateY(10px); 
+}
+
+.markerBaloon {
+  background: white;
+  padding: 0.5rem 0.75rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  font-size: 0.85rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  white-space: nowrap;
+}
+
+.markerPin {
+  color: var(--color-primary);
+  filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(10px); }
+  50% { transform: translateY(0px); }
+}
+
+.myLocationMarker {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  transform: translate(-50%, -50%);
+}
+
+.myLocationCore {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 14px;
+  height: 14px;
+  background-color: var(--color-primary);
+  border: 2px solid white;
+  border-radius: 50%;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  z-index: 2;
+}
+
+.myLocationPulse {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-primary);
+  border-radius: 50%;
+  z-index: 1;
+  animation: pulse 2s infinite ease-out;
+}
+
+@keyframes pulse {
+  0% { transform: translate(-50%, -50%) scale(0.8); opacity: 0.8; }
+  100% { transform: translate(-50%, -50%) scale(2.5); opacity: 0; }
+}
+
+/* ========================================================
+   Responsive Media Queries
+   ======================================================== */
+
+/* Tablet & Smaller Desktop (max-width: 1024px) */
+@media (max-width: 1024px) {
+  .sidebar {
+    width: 340px;
+    min-width: 340px;
+  }
+  .headerSearch {
+    width: 250px;
+  }
+}
+
+/* Mobile & Small Tablet (max-width: 768px) */
+@media (max-width: 768px) {
+  .webHeader {
+    padding: 0 1rem;
+    height: 60px;
+  }
+  .logoText {
+    font-size: 1.25rem;
+  }
+  .headerSearch {
+    width: auto;
+    flex: 1;
+    margin: 0 1rem;
+  }
+  .navBtn {
+    display: none; /* Hide text buttons on mobile */
+  }
+  .webFooter {
+    display: none;
+  }
+  
+  /* Stack sidebar and map */
+  .webBody {
+    flex-direction: column; /* Changed to column to put sidebar on top or bottom */
+  }
+  
+  .sidebar {
+    width: 100%;
+    min-width: 100%;
+    height: 50vh; /* Take up half screen */
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .listHeader {
+    align-items: stretch;
+  }
+
+  .listMetaRow {
+    width: 100%;
+  }
+
+  .sortDropdown {
+    width: 100%;
+  }
+
+  .sortMenu {
+    min-width: 100%;
+  }
+
+  .contentArea {
+    flex: 1; /* Map takes remaining space */
+    padding: 1rem;
+    gap: 1rem;
+  }
+  
+  .myLocationBtn {
+    bottom: 1rem;
+    right: 1rem;
+    width: 40px;
+    height: 40px;
+  }
+  
+  .webBottomNav {
+    padding: 0;
+    justify-content: center;
+  }
+}
+
+/* Extra Small Mobile (max-width: 480px) */
+@media (max-width: 480px) {
+  .headerInput {
+    display: none;
+  }
+  .headerSearch {
+    padding: 0.5rem;
+    justify-content: center;
+    background: transparent;
+    border-color: transparent;
+  }
+
+  .sortTrigger {
+    padding: 0.7rem 0.8rem;
+    font-size: 0.84rem;
+  }
+
+  .sortTriggerValue {
+    max-width: 11rem;
+  }
+
+  .sortMenuItem {
+    min-height: 2.8rem;
+  }
+}

@@ -1,0 +1,392 @@
+.webContainer {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #1a1f2e; /* Deep dark background */
+}
+
+/* 1. Header */
+.webHeader {
+  height: 64px;
+  background-color: rgba(26, 31, 46, 0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.logoGroup {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  cursor: pointer;
+}
+
+.logoMark {
+  width: auto;
+  height: 38px;
+  object-fit: contain;
+  object-position: center;
+  display: block;
+  flex-shrink: 0;
+}
+
+.logoText {
+  color: white;
+  font-size: 1.125rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+
+.searchContainer {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.headerSearch {
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-full);
+  padding: 0.5rem 1.25rem;
+  width: 380px;
+  color: white;
+  gap: 0.75rem;
+  transition: all 0.2s;
+}
+
+.searchInput {
+  flex: 1;
+  background: none;
+  border: none;
+  color: white;
+  outline: none;
+  font-size: 0.9rem;
+}
+
+.navLinks {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.navBtn {
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.iconBtn {
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.6);
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 50%;
+}
+
+.iconBtn.active {
+  color: white;
+}
+
+/* 2. Body */
+.webBody {
+  flex: 1;
+  display: flex;
+  height: calc(100vh - 64px - 80px); /* Minus header and footer */
+}
+
+/* Sidebar */
+.sidebar {
+  width: 260px;
+  border-right: 1px solid rgba(255, 255, 255, 0.05);
+  background-color: rgba(21, 26, 38, 0.5);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  overflow-y: auto;
+}
+
+.sidebarSection {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.sectionTitle {
+  color: white;
+  font-size: 0.9rem;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  opacity: 0.8;
+}
+
+.categoryList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.categoryItem {
+  background: none;
+  border: none;
+  text-align: left;
+  color: rgba(255, 255, 255, 0.6);
+  padding: 0.6rem 0.75rem;
+  border-radius: var(--radius-md);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.categoryItem:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+  color: white;
+}
+
+.categoryItem.active {
+  background-color: var(--color-primary);
+  color: white;
+}
+
+.sortList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.sortOption {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  width: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  text-align: left;
+  color: rgba(255, 255, 255, 0.76);
+  padding: 0.75rem 0.85rem;
+  border-radius: var(--radius-lg);
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.05);
+  transition: all 0.2s ease;
+}
+
+.sortOption:hover {
+  background: rgba(255, 255, 255, 0.09);
+  color: white;
+}
+
+.sortOption.active {
+  color: white;
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.16), rgba(59, 130, 246, 0.22));
+  border-color: rgba(96, 165, 250, 0.45);
+}
+
+.sortOptionText {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.1rem;
+  min-width: 0;
+}
+
+.sortOptionLabel {
+  line-height: 1.15;
+}
+
+.sortOptionHint {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: rgba(226, 232, 240, 0.55);
+}
+
+.sortOption.active .sortOptionHint {
+  color: rgba(226, 232, 240, 0.75);
+}
+
+.sortOptionCheck {
+  width: 1.25rem;
+  height: 1.25rem;
+  flex-shrink: 0;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.sortOption.active .sortOptionCheck {
+  background: rgba(96, 165, 250, 0.32);
+  border-color: rgba(147, 197, 253, 0.7);
+}
+
+/* Content Area */
+.contentArea {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.gridWrapper {
+  flex: 1;
+  padding: 2rem;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.contentHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.summaryText {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.countText {
+  color: var(--color-status-green);
+}
+
+.locationSearchBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1px solid rgba(96, 165, 250, 0.35);
+  background: rgba(59, 130, 246, 0.14);
+  color: #dbeafe;
+  padding: 0.7rem 1rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.locationSearchBtn:hover:not(:disabled) {
+  background: rgba(59, 130, 246, 0.22);
+  border-color: rgba(147, 197, 253, 0.5);
+}
+
+.locationSearchBtn:disabled {
+  opacity: 0.65;
+  cursor: wait;
+}
+
+.gridContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.5rem;
+}
+
+.emptyState {
+  text-align: center;
+  padding: 4rem;
+  color: rgba(255, 255, 255, 0.4);
+  font-weight: 600;
+}
+
+/* 3. Bottom Nav Area */
+.webBottomNav {
+  height: 80px;
+  background-color: rgba(21, 26, 38, 0.95);
+  backdrop-filter: blur(12px);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.navTabs {
+  display: flex;
+  gap: 2rem;
+}
+
+.webNavBtn {
+  background: none;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 0.75rem;
+  font-weight: 700;
+  gap: 0.25rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.webNavBtn.active {
+  color: white;
+}
+
+.webFooter {
+  margin-top: 0.5rem;
+  color: rgba(255, 255, 255, 0.3);
+  font-size: 0.7rem;
+}
+
+/* ========================================================
+   Responsive Media Queries
+   ======================================================== */
+
+@media (max-width: 1024px) {
+  .sidebar { width: 220px; }
+  .headerSearch { width: 300px; }
+  .gridContainer { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
+}
+
+@media (max-width: 768px) {
+  .webHeader { padding: 0 1rem; height: 60px; }
+  .headerSearch { width: auto; flex: 1; margin: 0 1rem; }
+  .navLinks { display: none; }
+  
+  .webBody { 
+    flex-direction: column; 
+    height: auto; 
+    min-height: calc(100vh - 64px - 80px); 
+  }
+  
+  .sidebar { 
+    width: 100%; 
+    border-right: none; 
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05); 
+    padding: 1rem; 
+    max-height: 200px; 
+    display: flex; 
+    flex-direction: row; 
+    flex-wrap: wrap; 
+    gap: 1rem;
+  }
+  
+  .gridWrapper { padding: 1rem; }
+  .gridContainer { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 480px) {
+  .searchInput { display: none; }
+  .headerSearch { padding: 0.5rem; justify-content: center; background: transparent; border-color: transparent; }
+}

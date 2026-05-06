@@ -1,0 +1,343 @@
+/* Admin.module.css (Dashboard Expanded) */
+.container {
+  min-height: 100vh;
+  background-color: #f1f5f9;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  background-color: #1e293b;
+  color: white;
+  padding: 1rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: var(--shadow-md);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.logo {
+  background: linear-gradient(135deg, #3b82f6, #2563eb); /* Admin blue */
+  padding: 0.5rem;
+  border-radius: var(--radius-md);
+  display: flex;
+}
+
+.title {
+  font-size: 1.25rem;
+  font-weight: 800;
+  margin: 0;
+  letter-spacing: -0.5px;
+}
+
+.subtitle {
+  font-size: var(--font-size-xs);
+  color: #94a3b8;
+  margin-left: 0.5rem;
+  font-weight: 400;
+}
+
+.logoutBtn {
+  color: #cbd5e1;
+  font-size: var(--font-size-sm);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-md);
+  transition: all 0.2s;
+}
+
+.logoutBtn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+}
+
+/* 2단 그리드 프레임 ➡ 상하단 스택 레이아웃으로 변경 */
+.mainFrame {
+  flex: 1;
+  display: flex;
+  flex-direction: column; /* 세로가 아닌 가로 배치 해제 */
+}
+
+/* 사이드바 ➡ 가로 상단 탭 바로 변경 */
+.sidebar {
+  width: 100%;
+  background: #1e293b;
+  padding: 0.5rem 1rem;
+  display: flex;
+  flex-direction: row; /* 가로 배치 */
+  gap: 0.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  overflow-x: auto; /* 아이콘 넘치면 가로 스크롤 대응 */
+  white-space: nowrap;
+}
+
+/* 스크롤바 숨기기 */
+.sidebar::-webkit-scrollbar {
+  display: none;
+}
+
+.navItem {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1rem;
+  border-radius: 8px;
+  background: transparent;
+  border: none;
+  color: #94a3b8;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  flex-shrink: 0; /* 가로 압축 방지 */
+}
+
+.navItem:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: white;
+}
+
+.activeNav {
+  background: var(--color-primary) !important;
+  color: white !important;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+/* 컨텐츠 본문 */
+.content {
+  flex: 1;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  background-color: #f8fafc;
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.25rem;
+}
+
+.statCard {
+  background: white;
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.statHeader {
+  display: flex;
+  justify-content: space-between;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+}
+
+.statValue {
+  font-size: 2rem;
+  font-weight: 900;
+  color: var(--color-text-primary);
+}
+
+.trend {
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.up { color: var(--color-status-green); }
+.down { color: var(--color-status-red); }
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.sectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sectionTitle {
+  font-size: 1.125rem;
+  font-weight: 800;
+  color: var(--color-text-primary);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0;
+}
+
+.addButton {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.5rem 0.85rem;
+  border-radius: 8px;
+  border: none;
+  background: var(--color-primary);
+  color: white;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.addButton:hover {
+  background: var(--color-primary-dark);
+}
+
+.tableCard {
+  background: white;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+}
+
+.tableHeader {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1.5fr 80px;
+  background: #f8fafc;
+  padding: 0.85rem 1.5rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--color-text-secondary);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.tableRow {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1.5fr 80px;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid var(--color-border);
+  transition: background 0.2s;
+}
+
+.tableRow:last-child {
+  border-bottom: none;
+}
+
+.tableRow:hover {
+  background: #f8fafc;
+}
+
+.cellName {
+  font-weight: 600;
+  color: var(--color-text-primary);
+  display: flex;
+  flex-direction: column;
+}
+
+.cellCategory {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  font-weight: 400;
+}
+
+.actions {
+  display: flex;
+  gap: 0.25rem;
+  justify-content: flex-end;
+}
+
+/* 그리드 컬럼 분기 가이드 */
+.grid3 {
+  grid-template-columns: 2fr 1.5fr 1fr;
+}
+
+.grid4 {
+  grid-template-columns: 2fr 1fr 1.5fr 80px;
+}
+
+.iconBtn {
+  background: transparent;
+  border: none;
+  padding: 0.35rem;
+  border-radius: 6px;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+}
+
+.iconBtn:hover {
+  background: rgba(0, 0, 0, 0.05);
+  color: var(--color-text-primary);
+}
+
+@media (max-width: 768px) {
+  /* 가로 탑바 형태에선 모바일 사이드바 소멸 코드 불필요 */
+  .sidebar {
+    padding: 0.5rem;
+  }
+
+  /* 본문 여백 상시 유지 보정 */
+  .content {
+    padding: 1rem;
+    gap: 1rem;
+  }
+  
+  .statsGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+
+  .statCard {
+    padding: 1rem;
+  }
+
+  .statValue {
+    font-size: 1.5rem;
+  }
+
+  /* 테이블 카드화 (모바일) */
+  .tableHeader {
+    display: none; 
+  }
+
+  .tableRow {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.65rem;
+    padding: 1.25rem 1rem;
+    border-bottom: 1px solid #f1f5f9;
+    position: relative;
+  }
+
+  .grid3, .grid4 {
+    grid-template-columns: none;
+  }
+
+  .cellName {
+    font-size: 1rem;
+    width: 100%;
+  }
+
+  .actions {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+  }
+}

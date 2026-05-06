@@ -1,0 +1,305 @@
+.container {
+  height: 100dvh;
+  width: 100%;
+  position: relative;
+  overflow: hidden; 
+  background-color: #2d3547;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 동적 투명 헤더 */
+.header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1rem;
+  padding-top: env(safe-area-inset-top, 0);
+  z-index: 50;
+  transition: all 0.3s ease;
+  background: transparent;
+}
+
+.headerSolid {
+  background: rgba(45, 53, 71, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.headerTitle {
+  font-size: 1.1rem;
+  font-weight: 700;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.3s ease;
+  color: #f8fafc;
+}
+
+.headerSolid .headerTitle {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.backBtn, .headerActionBtn {
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: white;
+}
+
+/* 백그라운드 영역 (고정) */
+.coverArea {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.coverImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.coverOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0) 40%, rgba(0,0,0,0.6) 100%);
+}
+
+/* 드래그 가능한 바텀 시트 */
+.contentSheet {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: #2d3547;
+  border-radius: 24px 24px 0 0;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 -10px 30px rgba(0,0,0,0.5);
+  overflow: hidden;
+  color: white;
+}
+
+.dragWrapper {
+  width: 100%;
+  padding: 0.75rem 0;
+  display: flex;
+  justify-content: center;
+  cursor: grab;
+  touch-action: none;
+  flex-shrink: 0;
+}
+
+.dragHandle {
+  width: 36px;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 3px;
+}
+
+.scrollArea {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0 1.25rem;
+  padding-bottom: 120px;
+}
+
+.contentHeader {
+  padding-top: 0.5rem;
+}
+
+.titleRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.5rem;
+}
+
+.title {
+  font-size: 1.75rem;
+  font-weight: 800;
+  margin: 0;
+  line-height: 1.3;
+}
+
+.category {
+  color: var(--color-primary);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.statusWrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.updateTime {
+  font-size: var(--font-size-sm);
+  color: #94a3b8;
+}
+
+.infoList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1.25rem;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  margin-bottom: 1.5rem;
+}
+
+.infoItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  font-size: var(--font-size-base);
+  color: #cbd5e1;
+}
+
+.icon {
+  color: #64748b;
+  margin-top: 0.125rem;
+  flex-shrink: 0;
+}
+
+.section {
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem;
+  margin-bottom: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.sectionTitle {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 1.25rem;
+  color: #f1f5f9;
+}
+
+/* 차트 컨테이너 */
+.chartContainer {
+  height: 140px;
+  background: rgba(15, 23, 42, 0.3);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: flex-end;
+  padding: 1rem 0.5rem 0.5rem;
+  gap: 0.75rem;
+  border: 1px solid rgba(255,255,255,0.03);
+}
+
+.chartBarWrapper {
+  flex: 1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.chartBar {
+  width: 100%;
+  border-radius: 6px 6px 0 0;
+  position: relative;
+  transition: height 0.3s ease;
+  background: linear-gradient(180deg, var(--color-status-green) 0%, rgba(16, 185, 129, 0.2) 100%);
+}
+
+.chartLabel {
+  font-size: 0.65rem;
+  color: #94a3b8;
+  white-space: nowrap;
+}
+
+/* 길찾기 등 하단 플로팅 액션 바 */
+.floatingActionBar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 1rem 1.5rem;
+  padding-bottom: calc(1rem + env(safe-area-inset-bottom, 0));
+  background: rgba(45, 53, 71, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-top: 1px solid rgba(255,255,255,0.1);
+  display: flex;
+  gap: 0.75rem;
+  z-index: 50;
+  box-shadow: 0 -10px 40px rgba(0,0,0,0.3);
+}
+
+.shareBtn {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.mapToggleBtn {
+  flex: 1;
+  height: 56px;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  color: white;
+  font-weight: 700;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+
+.navBtn {
+  flex: 1.5;
+  background: var(--gradient-primary);
+  color: white;
+  border: none;
+  border-radius: var(--radius-full);
+  padding: 1rem;
+  font-size: 1.05rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+  cursor: pointer;
+}

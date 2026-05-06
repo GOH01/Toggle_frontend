@@ -1,0 +1,118 @@
+.carouselWrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: #0f172a;
+}
+
+.emptyContainer {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #1e293b;
+  color: rgba(255, 255, 255, 0.5);
+  gap: 1rem;
+}
+
+.carouselInner {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.slide {
+  flex: 0 0 100%;
+  height: 100%;
+  position: relative;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(15,23,42,0.6) 0%, rgba(15,23,42,0) 25%, rgba(15,23,42,0) 60%, rgba(15,23,42,0.95) 100%);
+  pointer-events: none;
+}
+
+.navBtn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.navBtn:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-50%) scale(1.05);
+}
+
+.navBtn:active {
+  transform: translateY(-50%) scale(0.95);
+}
+
+.prevBtn {
+  left: 1.5rem;
+}
+
+.nextBtn {
+  right: 1.5rem;
+}
+
+.indicatorContainer {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  z-index: 10;
+}
+
+.indicator {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.4);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.indicator.active {
+  width: 24px;
+  border-radius: 12px;
+  background-color: white;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+}
+
+@media (max-width: 768px) {
+  /* 모바일 기기에서는 좌우 버튼을 숨김 (대신에 터치 스와이프를 지원) */
+  .navBtn {
+    display: none;
+  }
+}

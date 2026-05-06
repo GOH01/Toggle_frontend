@@ -1,0 +1,26 @@
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 700;
+  border-radius: var(--radius-full);
+  letter-spacing: 0.02em;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  white-space: nowrap; /* 텍스트 줄바꿈 방지 */
+}
+
+.sm {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.7rem;
+}
+
+.md {
+  padding: 0.35rem 0.75rem;
+  font-size: var(--font-size-sm);
+}
+
+.lg {
+  padding: 0.5rem 1rem;
+  font-size: var(--font-size-base);
+}

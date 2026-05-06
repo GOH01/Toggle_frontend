@@ -1,0 +1,206 @@
+.container {
+  height: 100vh;
+  background-color: #2d3547; /* Slate Dark Background */
+  display: flex;
+  flex-direction: column;
+  overflow: hidden; /* Header and Nav stay fixed, only content scrolls */
+}
+
+.header {
+  background: rgba(45, 53, 71, 0.85);
+  backdrop-filter: blur(12px);
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+.topRow {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.backBtn {
+  color: white;
+  padding: 0.25rem;
+  margin-left: -0.25rem;
+  border-radius: 50%;
+}
+
+.backBtn:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.pageTitle {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: white;
+  letter-spacing: -0.5px;
+}
+
+/* Category Filter Scroll */
+.categoryFilter {
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+  -ms-overflow-style: none; /* IE/Edge */
+  scrollbar-width: none;    /* Firefox */
+}
+
+.categoryFilter::-webkit-scrollbar {
+  display: none; /* Chrome/Safari */
+}
+
+.categoryBtn {
+  white-space: nowrap;
+  padding: 0.55rem 1.15rem;
+  border-radius: var(--radius-full);
+  font-size: 0.85rem;
+  font-weight: 700;
+  background-color: rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.2s;
+}
+
+.categoryBtn:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.categoryBtn.active {
+  background-color: white;
+  color: #0f172a;
+  border-color: white;
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
+}
+
+/* Sort and Utility Bar */
+.filterBar {
+  padding: 0.85rem 1.5rem;
+  background-color: rgba(45, 53, 71, 0.95);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.totalCount {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.5);
+  font-weight: 600;
+}
+
+.totalCount strong {
+  color: var(--color-status-green); /* Use Green accent */
+}
+
+.filterActions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.locationSearchBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: rgba(59, 130, 246, 0.16);
+  border: 1px solid rgba(96, 165, 250, 0.28);
+  color: #dbeafe;
+  border-radius: var(--radius-md);
+  padding: 0.42rem 0.65rem;
+  font-size: 0.76rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.locationSearchBtn:disabled {
+  opacity: 0.65;
+  cursor: wait;
+}
+
+.sortSelect {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.8);
+  border-radius: var(--radius-md);
+  padding: 0.35rem 0.6rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  outline: none;
+  cursor: pointer;
+}
+
+.sortSelect option {
+  background-color: #1e293b;
+  color: white;
+}
+
+.content {
+  flex: 1;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  overflow-y: auto;
+}
+
+/* Custom scrollbar to keep it compact on mobile frames */
+.content::-webkit-scrollbar {
+  width: 4px;
+}
+
+.content::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+
+/* Bottom Navigation */
+.bottomNavWrapper {
+  margin-top: auto;
+  flex-shrink: 0;
+  z-index: 100;
+}
+
+.bottomNav {
+  display: flex;
+  background: rgba(30, 41, 59, 0.95);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 0.85rem 1.5rem;
+  justify-content: space-between;
+  padding-bottom: calc(0.85rem + env(safe-area-inset-bottom, 0px));
+}
+
+.navBtn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  color: rgba(255, 255, 255, 0.4);
+  background: none;
+  border: none;
+  font-size: 0.7rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.navBtn span {
+  font-size: 0.7rem;
+  margin-top: 2px;
+}
+
+.navBtn.active {
+  color: white;
+}
+
+.navBtn:active {
+  transform: scale(0.95);
+}

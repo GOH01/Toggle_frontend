@@ -1,0 +1,219 @@
+.container {
+  height: 100vh; /* Fixed height for flexible child containers to scroll independently */
+  background-color: #2d3547; /* Match PC sidebar matte slate grey */
+  display: flex;
+  flex-direction: column;
+  color: white;
+  overflow: hidden; /* Header and Nav stay fixed, only content scrolls */
+}
+
+.header {
+  background-color: rgba(45, 53, 71, 0.85); /* Match 2d3547 in transparent mode */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 1.25rem 1.5rem;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.title {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: white;
+}
+
+.backBtn {
+  margin-left: -0.5rem;
+  padding: 0.5rem;
+  color: white;
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+/* Tab segments */
+.tabWrapper {
+  padding: 1rem 1.5rem 0.5rem 1.5rem;
+}
+
+.tabContainer {
+  display: flex;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 0.35rem;
+  border-radius: var(--radius-lg);
+  gap: 0.25rem;
+}
+
+.tab {
+  flex: 1;
+  padding: 0.75rem 0;
+  border: none;
+  background: none;
+  color: rgba(255, 255, 255, 0.5);
+  font-weight: 700;
+  font-size: 0.85rem;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.tab.active {
+  background: white;
+  color: #0f172a;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Content */
+.content {
+  flex: 1;
+  padding: 1rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  overflow-y: auto; /* Independent content scrolling */
+}
+
+/* Custom scrollbar to keep it compact on mobile frames */
+.content::-webkit-scrollbar {
+  width: 4px;
+}
+.content::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.sectionTitle {
+  font-size: 1rem;
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.iconStore {
+  color: #10b981;
+}
+
+.iconPublic {
+  color: #3b82f6;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+}
+
+.cardBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.cardActionRow {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.myMapBtn {
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 0.55rem 0.85rem;
+  background: rgba(59, 130, 246, 0.2);
+  border: 1px solid rgba(59, 130, 246, 0.4);
+  color: #60a5fa;
+  border-radius: var(--radius-md);
+  backdrop-filter: blur(8px);
+  cursor: pointer;
+}
+
+.myMapBtn:hover {
+  background: rgba(59, 130, 246, 0.4);
+}
+
+/* Empty State */
+.emptyState {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 0;
+  text-align: center;
+}
+
+.emptyIcon {
+  background: rgba(255, 255, 255, 0.03);
+  padding: 1.5rem;
+  border-radius: 50%;
+  color: rgba(255, 255, 255, 0.2);
+  margin-bottom: 1.5rem;
+}
+
+.emptyState h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 0.5rem;
+}
+
+.emptyState p {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.9rem;
+  margin-bottom: 2rem;
+}
+
+.goMapBtn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--color-primary);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.25rem;
+  border-radius: var(--radius-full);
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+  transition: transform 0.2s;
+}
+
+.goMapBtn:hover {
+  transform: translateY(-2px);
+}
+
+/* Bottom Navigation styles matching Home.jsx */
+.bottomNavWrapper {
+  margin-top: auto;
+  flex-shrink: 0;
+  z-index: 100;
+}
+
+.bottomNav {
+  display: flex;
+  background: rgba(30, 41, 59, 0.95); /* Deep slate to composite perfectly */
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  padding: 0.85rem 1.5rem;
+  justify-content: space-between;
+  padding-bottom: calc(0.85rem + env(safe-area-inset-bottom, 0px)); /* Safe Area padding for iOS views */
+}

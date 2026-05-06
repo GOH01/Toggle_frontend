@@ -1,0 +1,539 @@
+.container {
+  height: 100vh;
+  background-color: #2d3547; /* Match PC sidebar matte slate grey layout */
+  display: flex;
+  flex-direction: column;
+  color: white;
+  overflow: hidden; /* Header and Footer stay fixed, only content scrolls */
+}
+
+.header {
+  background-color: rgba(45, 53, 71, 0.85); /* Transparent sidebar grey matching */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 1.25rem 1.5rem;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.headerLeft {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.headerRight {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem; /* 버튼을 가깝게 붙이기 */
+}
+
+.title {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: white;
+}
+
+.backBtn {
+  margin-left: -0.5rem;
+  padding: 0.5rem;
+  color: white;
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.shareBtn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: var(--font-size-sm);
+  color: var(--color-primary);
+  font-weight: 600;
+  padding: 0.5rem 0.75rem;
+  background: rgba(59, 130, 246, 0.1);
+  border-radius: var(--radius-full);
+}
+
+.shareLinkCard {
+  margin-top: 0.9rem;
+  padding: 0.9rem 1rem;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.shareLinkHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.shareLinkLabel {
+  margin: 0;
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.shareLinkHint {
+  margin: 0.25rem 0 0;
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.56);
+  line-height: 1.45;
+}
+
+.shareLinkCopyBtn {
+  flex-shrink: 0;
+  padding: 0.45rem 0.75rem;
+  border-radius: var(--radius-full);
+  border: none;
+  background: rgba(255, 255, 255, 0.95);
+  color: #0f172a;
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+.shareLinkRow {
+  margin-top: 0.75rem;
+}
+
+.shareLinkInput {
+  width: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(15, 23, 42, 0.45);
+  color: rgba(255, 255, 255, 0.88);
+  border-radius: 14px;
+  padding: 0.8rem 0.9rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.content {
+  flex: 1;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  overflow-y: auto; /* Independent content scrolling */
+}
+
+/* Custom scrollbar to keep it compact on mobile frames */
+.content::-webkit-scrollbar {
+  width: 4px;
+}
+.content::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+
+.profileCard {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.3), rgba(16, 185, 129, 0.3));
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  color: white;
+  border-radius: var(--radius-lg);
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+.searchForm {
+  display: flex;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-lg);
+  padding: 0.75rem 1rem;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.searchForm input {
+  flex: 1;
+  background: none;
+  border: none;
+  color: white;
+  outline: none;
+  font-size: 0.9rem;
+}
+
+.searchForm button {
+  background: var(--color-primary);
+  border: none;
+  color: white;
+  padding: 0.4rem 0.8rem;
+  border-radius: var(--radius-md);
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.mainTabs {
+  display: flex;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: var(--radius-lg);
+  padding: 0.35rem;
+  gap: 0.25rem;
+  flex-shrink: 0; /* Prevent squeezing */
+}
+
+.mainTab {
+  flex: 1;
+  padding: 0.7rem 0;
+  border: none;
+  background: none;
+  color: rgba(255,255,255,0.6);
+  font-size: 0.85rem;
+  font-weight: 700;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+}
+
+.mainTab.active {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.placeCardWrapper {
+  position: relative;
+  width: 100%;
+}
+
+.deleteBtn, .saveToMyMapBtn {
+  position: absolute;
+  top: 1rem;
+  right: 1.5rem; /* 우측 상단 고정 */
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.35rem 0.6rem;
+  border-radius: var(--radius-md);
+  backdrop-filter: blur(4px);
+  cursor: pointer;
+  z-index: 10;
+}
+
+.deleteBtn {
+  background: rgba(239, 68, 68, 0.15);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  color: #f87171;
+}
+
+.saveToMyMapBtn {
+  background: rgba(16, 185, 129, 0.2);
+  border: 1px solid rgba(16, 185, 129, 0.4);
+  color: #34d399;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.mapContainer {
+  flex: 1;
+  min-height: 350px;
+  background-color: rgba(255,255,255,0.05);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  position: relative;
+  z-index: 10;
+}
+
+.viewToggleBtn {
+  position: absolute;
+  bottom: calc(5rem + env(safe-area-inset-bottom, 0px)); /* Floating above bottomNav */
+  left: 50%;
+  transform: translateX(-50%);
+  background: white;
+  color: #0f172a;
+  padding: 0.75rem 1.25rem;
+  border-radius: var(--radius-full);
+  font-size: 0.85rem;
+  font-weight: 800;
+  border: none;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.markerBaloon {
+  background: white;
+  padding: 0.4rem 0.6rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  font-size: 0.8rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  white-space: nowrap;
+  color: #0f172a;
+}
+
+.deleteBtn:hover {
+  background: rgba(239, 68, 68, 0.3);
+}
+
+.profileTop {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.avatar {
+  width: 52px;
+  height: 52px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background-position: center;
+}
+
+.cameraIcon {
+  position: absolute;
+  bottom: -2px;
+  right: -2px;
+  background: var(--color-primary);
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #2d3547;
+}
+
+.avatarWrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.deleteProfileBtn {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  background: #ef4444;
+  color: white;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1.5px solid #2d3547;
+  cursor: pointer;
+  z-index: 10;
+  padding: 0;
+  font-size: 0.65rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.titleRow {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.editIcon {
+  color: rgba(255, 255, 255, 0.6);
+  cursor: pointer;
+}
+
+.editTitleRow {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  width: 100%;
+}
+
+.titleInput, .descInput {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius-md);
+  color: white;
+  padding: 0.35rem 0.6rem;
+  font-size: 1rem;
+  font-weight: 700;
+  flex: 1;
+  outline: none;
+}
+
+.descInput {
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: #cbd5e1;
+}
+
+.saveBtn {
+  background: white;
+  color: #0f172a;
+  border: none;
+  padding: 0.35rem 0.6rem;
+  border-radius: var(--radius-md);
+  font-size: 0.75rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.mapDescText {
+  font-size: 0.85rem;
+  color: #cbd5e1;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 180px;
+}
+
+.userInfo h2 {
+  font-size: 1.125rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.userInfo p {
+  font-size: var(--font-size-sm);
+  opacity: 0.8;
+  margin-top: 0.25rem;
+}
+
+.toggleSwitch {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(0, 0, 0, 0.2);
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+}
+
+.switch {
+  position: relative;
+  width: 44px;
+  height: 24px;
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 24px;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.switch.on {
+  background-color: var(--color-status-green);
+}
+
+.switchThumb {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 20px;
+  height: 20px;
+  background-color: white;
+  border-radius: 50%;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.switch.on .switchThumb {
+  left: calc(100% - 22px);
+}
+
+.filterBar {
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  padding: 0.5rem 0; /* Add vertical padding so clips don't occur */
+  flex-shrink: 0; /* Prevent Flexbox from squeezing the height */
+}
+
+/* Hide scrollbars to prevent clipping content heights */
+.filterBar::-webkit-scrollbar {
+  display: none;
+}
+
+.filterBtn {
+  white-space: nowrap;
+  padding: 0.6rem 1.15rem;
+  border-radius: var(--radius-full);
+  font-size: 0.85rem;
+  font-weight: 700;
+  background-color: rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+.filterBtn:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+.filterBtn.active {
+  background-color: white;
+  color: #0f172a;
+  border-color: white;
+}
+
+.emptyState {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.4);
+  margin-top: 3rem;
+  font-size: 0.95rem;
+}
+
+/* Bottom Navigation styles matching Home.jsx */
+.guestLoginBtn {
+  background: var(--gradient-primary);
+  color: white;
+  border: none;
+  border-radius: var(--radius-md);
+  padding: 0.75rem 1.5rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 1.5rem;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+  transition: all 0.2s ease;
+}
+
+.guestLoginBtn:hover {
+  transform: translateY(-2px);
+  opacity: 0.9;
+}
+
+/* 하단 네비게이션 고정 복원 */
+.bottomNavWrapper {
+  margin-top: auto;
+  flex-shrink: 0;
+  z-index: 100;
+}
+
+.bottomNav {
+  display: flex;
+  background: rgba(30, 41, 59, 0.95);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  padding: 0.85rem 1.5rem;
+  justify-content: space-between;
+  padding-bottom: calc(0.85rem + env(safe-area-inset-bottom, 0px));
+}

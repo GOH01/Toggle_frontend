@@ -1,0 +1,473 @@
+.mapContainer {
+  position: relative;
+  width: 100%;
+  height: 100dvh; /* Use dynamic viewport height for mobile browsers */
+  overflow: hidden;
+  background-color: #e2e8f0;
+}
+
+/* 임시 배경 (카카오 지도 로드 전) */
+.mapBackground {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(#cbd5e1 1px, transparent 1px),
+    radial-gradient(#cbd5e1 1px, transparent 1px);
+  background-size: 20px 20px;
+  background-position: 0 0, 10px 10px;
+  z-index: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #94a3b8;
+  font-weight: 500;
+}
+
+.mapContent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%; /* Ensure it spans the full map container */
+  pointer-events: none;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Space out top UI and bottom sheet */
+}
+
+.topUi {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  pointer-events: auto; /* UI영역은 터치 가능해야함 */
+  background: linear-gradient(180deg, rgba(15,23,42,0.8) 0%, rgba(15,23,42,0) 100%);
+  padding-bottom: 2rem;
+}
+
+/* 검색 관련 스타일 */
+.searchContainer {
+  position: relative;
+  width: 100%;
+}
+
+.searchWrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  position: relative;
+  z-index: 100;
+}
+
+.searchInputBox {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: var(--radius-full);
+  padding: 0.75rem 1rem;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  transition: all 0.2s;
+}
+
+.searchInputBox:focus-within {
+  background: rgba(15, 23, 42, 0.8);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+.searchInput {
+  border: none;
+  background: transparent;
+  outline: none;
+  width: 100%;
+  margin-left: 0.5rem;
+  font-size: 0.95rem;
+  color: white;
+}
+
+.searchInput::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* 연관 검색어 드롭다운 (모바일) */
+.suggestionList {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 54px; /* 햄버거 버튼 너비만큼 띄움 */
+  right: 0;
+  background: rgba(15, 23, 42, 0.95);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: var(--radius-md);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  max-height: 250px;
+  overflow-y: auto;
+  z-index: 90;
+  list-style: none;
+  padding: 0.5rem 0;
+  margin: 0;
+  animation: fadeInDown 0.2s ease-out;
+}
+
+.suggestionList::-webkit-scrollbar {
+  width: 4px;
+}
+.suggestionList::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+}
+
+.suggestionItem {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.suggestionItem:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.suggestionIcon {
+  flex-shrink: 0;
+  background: rgba(59, 130, 246, 0.15);
+  padding: 0.25rem;
+  border-radius: 50%;
+  box-sizing: content-box;
+}
+
+.suggestionText {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  min-width: 0;
+}
+
+.suggestionName {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: white;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.suggestionAddress {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.5);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.hamburgerBtn {
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+  width: 46px;
+  height: 46px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  color: white;
+}
+
+.filterScroll {
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.filterScroll::-webkit-scrollbar {
+  display: none;
+}
+
+.filterChip {
+  white-space: nowrap;
+  padding: 0.5rem 1rem;
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: var(--radius-full);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.filterChip.active {
+  background: linear-gradient(135deg, #60a5fa, #c084fc);
+  color: white;
+  border-color: transparent;
+  box-shadow: 0 4px 15px rgba(96, 165, 250, 0.4);
+}
+
+.mapControls {
+  position: absolute;
+  right: 1rem;
+  top: 130px; /* 카테고리 칩 바로 아래쯤 위치 */
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  pointer-events: auto;
+  z-index: 20;
+}
+
+.controlBtn {
+  width: 44px;
+  height: 44px;
+  background: rgba(15, 23, 42, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  color: white;
+  cursor: pointer;
+}
+
+.mapSearchButtonWrap {
+  position: absolute;
+  top: 124px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 30;
+  pointer-events: auto;
+}
+
+.mapSearchButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  min-height: 44px;
+  padding: 0.7rem 1.1rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(15, 23, 42, 0.95);
+  color: white;
+  font-weight: 700;
+  font-size: 0.9rem;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.35);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  cursor: pointer;
+  touch-action: manipulation;
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+
+.mapSearchButton:active {
+  transform: scale(0.97);
+}
+
+/* 하단 바텀시트 UI */
+.bottomSheet {
+  margin-top: auto;
+  background: rgba(15, 23, 42, 0.85); /* Deep dark slate with opacity */
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 24px 24px 0 0;
+  padding: 0 1.5rem calc(5rem + env(safe-area-inset-bottom, 1rem)) 1.5rem; /* 패딩 탑 제거, dragWrapper에 위임 */
+  pointer-events: auto;
+  box-shadow: 0 -15px 40px rgba(0, 0, 0, 0.4);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 90;
+  will-change: height; /* Optimize for dragging */
+}
+
+.dragWrapper {
+  padding: 1.25rem 0 1rem 0; /* 핸들 위아래 상하 여백을 맞춰서 중앙정밀도 확보 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: grab;
+  touch-action: none; /* 드래그 시 브라우저 스크롤 개입 방지 */
+}
+
+.dragWrapper:active {
+  cursor: grabbing;
+}
+
+.dragHandle {
+  width: 48px;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 4px;
+}
+
+.sheetHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  gap: 0.75rem;
+}
+
+.sheetTitleGroup {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  min-width: 0;
+}
+
+.sheetTitle {
+  font-size: 1.125rem;
+  font-weight: 800;
+  color: white;
+}
+
+.openFilterBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 34px;
+  padding: 0.45rem 0.85rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 0.8rem;
+  font-weight: 700;
+  transition: all 0.2s ease;
+}
+
+.openFilterBtn.active {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.24), rgba(59, 130, 246, 0.24));
+  border-color: rgba(96, 165, 250, 0.45);
+  color: white;
+  box-shadow: 0 8px 18px rgba(37, 99, 235, 0.18);
+}
+
+.sheetLinkBtn {
+  color: var(--color-primary);
+  background: none;
+  border: none;
+  font-weight: 600;
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+
+.sheetList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  overflow-y: auto;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+.sheetList::-webkit-scrollbar {
+  display: none;
+}
+
+.markerPlaceholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  animation: bounce 2s infinite ease-in-out;
+  /* Overlay 기준점이 핀 끝에 맞도록 미세조정 */
+  transform: translateY(10px); 
+}
+
+.markerBaloon {
+  background: white;
+  padding: 0.5rem 0.75rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  font-size: 0.85rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  white-space: nowrap;
+}
+
+.markerPin {
+  color: var(--color-primary);
+  filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(10px); }
+  50% { transform: translateY(0px); }
+}
+
+/* 내 위치 마커 */
+.myLocationMarker {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  transform: translate(-50%, -50%); /* 중심 정렬 */
+}
+
+.myLocationCore {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 14px;
+  height: 14px;
+  background-color: var(--color-primary);
+  border: 2px solid white;
+  border-radius: 50%;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  z-index: 2;
+}
+
+.myLocationPulse {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-primary);
+  border-radius: 50%;
+  z-index: 1;
+  animation: pulse 2s infinite ease-out;
+}
+
+@keyframes pulse {
+  0% { transform: translate(-50%, -50%) scale(0.8); opacity: 0.8; }
+  100% { transform: translate(-50%, -50%) scale(2.5); opacity: 0; }
+}
+
+/* 기존 하단 네비게이션 덮어쓰기 위해 z-index 등 부여 */
+.bottomNavWrapper {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  pointer-events: auto;
+  z-index: 100;
+}

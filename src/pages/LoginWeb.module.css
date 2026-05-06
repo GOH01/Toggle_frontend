@@ -1,0 +1,438 @@
+/* LoginWeb.module.css */
+.container {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  background-color: #0f172a;
+  font-family: var(--font-family);
+  overflow: hidden;
+}
+
+/* 1. Left Graphic Panel */
+.graphicPanel {
+  flex: 1;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  color: white;
+  padding: 4rem;
+  overflow: hidden;
+}
+
+@media (max-width: 1024px) {
+  .graphicPanel {
+    display: none;
+  }
+}
+
+.graphicImage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+}
+
+.graphicOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(15,23,42,0.9) 0%, rgba(30,58,138,0.7) 100%);
+  z-index: 2;
+}
+
+.graphicContent {
+  position: relative;
+  z-index: 10;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.logoGroup {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  cursor: pointer;
+  margin-bottom: auto;
+  width: auto;
+}
+
+.logoMark {
+  width: auto;
+  height: 44px;
+  object-fit: contain;
+  object-position: center;
+  display: block;
+  flex-shrink: 0;
+}
+
+.logoText {
+  font-size: 1.35rem;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: #dbeafe;
+  text-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+}
+
+.graphicTitle {
+  font-size: clamp(3rem, 5vw, 4rem);
+  font-weight: 900;
+  line-height: 1.2;
+  margin-bottom: 2rem;
+  letter-spacing: -1px;
+  max-width: 16ch;
+}
+
+.graphicDesc {
+  font-size: 1.25rem;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.6;
+  margin-bottom: 4rem;
+  max-width: 500px;
+}
+
+.testimonial {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.avatarGroup {
+  display: flex;
+  align-items: center;
+}
+
+.avatar {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  border: 2px solid #1e3a8a;
+  background-size: cover;
+  background-position: center;
+}
+
+.avatarCount {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background: white;
+  color: #0f172a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 0.9rem;
+  margin-left: -15px;
+  border: 2px solid #1e3a8a;
+}
+
+.testimonial p {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* 2. Right Form Panel */
+.formPanel {
+  flex: 1;
+  max-width: 600px;
+  background: #0f172a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  position: relative;
+  z-index: 20;
+  box-shadow: -20px 0 50px rgba(0,0,0,0.5);
+}
+
+/* Add a subtle glow behind the form */
+.formPanel::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(96,165,250,0.15) 0%, transparent 60%);
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.formContainer {
+  width: 100%;
+  max-width: 420px;
+  position: relative;
+  z-index: 10;
+  animation: slideInRight 0.5s ease-out;
+}
+
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(30px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.backBtn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: none;
+  border: none;
+  color: rgba(255,255,255,0.5);
+  font-weight: 600;
+  cursor: pointer;
+  margin-bottom: 3rem;
+  transition: color 0.2s;
+}
+
+.backBtn:hover {
+  color: white;
+}
+
+.formTitle {
+  color: white;
+  font-size: 2.25rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+}
+
+.formSubtitle {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 1rem;
+  margin-bottom: 2.5rem;
+}
+
+/* Toggle Tabs */
+.tabContainer {
+  display: flex;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: var(--radius-full);
+  padding: 0.35rem;
+  margin-bottom: 2.5rem;
+  position: relative;
+}
+
+.tabIndicator {
+  position: absolute;
+  top: 0.35rem;
+  left: 0.35rem;
+  width: calc(50% - 0.35rem);
+  height: calc(100% - 0.7rem);
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-full);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.tab {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.85rem 0;
+  color: rgba(255, 255, 255, 0.5);
+  font-weight: 600;
+  cursor: pointer;
+  position: relative;
+  z-index: 10;
+  transition: color 0.3s;
+}
+
+.tab.active {
+  color: white;
+}
+
+/* Forms */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.inputWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.inputWrapper label {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-left: 0.5rem;
+}
+
+.inputGroup {
+  position: relative;
+}
+
+.input {
+  width: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 1rem 1rem 1rem 3rem;
+  border-radius: var(--radius-lg);
+  color: white;
+  font-size: 1rem;
+  outline: none;
+  transition: all 0.2s;
+}
+
+.input::placeholder {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.input:focus {
+  background: rgba(0, 0, 0, 0.5);
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+}
+
+.inputIcon {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: rgba(255, 255, 255, 0.4);
+  transition: color 0.2s;
+}
+
+.input:focus + .inputIcon {
+  color: var(--color-primary);
+}
+
+.formActions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.checkboxLabel {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.forgotLink {
+  color: var(--color-primary);
+  font-size: 0.85rem;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.forgotLink:hover {
+  text-decoration: underline;
+}
+
+.submitBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: var(--color-primary);
+  color: white;
+  border: none;
+  padding: 1rem;
+  border-radius: var(--radius-lg);
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+}
+
+.submitBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(59, 130, 246, 0.6);
+  background: var(--color-primary-dark);
+}
+
+.ownerBtn {
+  background: var(--color-success);
+  box-shadow: 0 8px 25px rgba(16, 185, 129, 0.3);
+}
+
+.ownerBtn:hover {
+  background: #059669; /* Darker emerald */
+  box-shadow: 0 12px 30px rgba(16, 185, 129, 0.5);
+}
+
+.signupPrompt {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.95rem;
+  margin-bottom: 2rem;
+}
+
+.signupPrompt a {
+  color: white;
+  font-weight: 700;
+  text-decoration: none;
+  margin-left: 0.25rem;
+}
+
+.signupPrompt a:hover {
+  text-decoration: underline;
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.3);
+  font-size: 0.85rem;
+  margin-bottom: 2rem;
+}
+
+.divider::before, .divider::after {
+  content: '';
+  flex: 1;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.divider span {
+  padding: 0 1rem;
+}
+
+.guestBtn {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.05);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 1rem;
+  border-radius: var(--radius-lg);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-bottom: 2rem;
+}
+
+.guestBtn:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.footerTerms {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 0.75rem;
+  line-height: 1.5;
+}
+
+.footerTerms a {
+  color: rgba(255, 255, 255, 0.6);
+  text-decoration: underline;
+}

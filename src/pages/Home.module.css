@@ -1,0 +1,110 @@
+.homeContainer {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+.header {
+  padding: 1.5rem 1.5rem 0.5rem;
+  background-color: var(--color-bg-surface);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  padding-bottom: 0.5rem; /* For tab to look connected */
+}
+
+/* Make sure the shadow is visible below header */
+.headerWrapper {
+  box-shadow: 0 4px 20px -10px rgba(0,0,0,0.1);
+  position: relative;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+.content {
+  flex: 1;
+  background-color: var(--color-bg-default);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.listOverlay {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.sectionTitle {
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: var(--color-text-primary);
+}
+
+.cardGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.mockMapContainer {
+  flex: 1;
+  background-color: #e5e7eb;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+}
+
+.mapPlaceholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: var(--color-text-muted);
+  font-weight: 600;
+}
+
+/* Floating bottom nav placeholder */
+.bottomNav {
+  position: sticky;
+  bottom: 0;
+  background: var(--color-bg-surface);
+  border-top: 1px solid var(--color-border);
+  padding: 0.75rem 1.5rem;
+  display: flex;
+  justify-content: space-around;
+  padding-bottom: calc(0.75rem + env(safe-area-inset-bottom));
+  z-index: 50;
+}
+
+.navItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  color: var(--color-text-muted);
+  font-size: 0.65rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.navItem.active {
+  color: var(--color-primary);
+}
