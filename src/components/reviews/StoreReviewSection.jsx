@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { AlertCircle, Image as ImageIcon, Loader2, MessageSquare, Plus, Star, Trash2, X } from 'lucide-react';
 import LoginModal from '../common/LoginModal';
+import SafeImage from '../common/SafeImage';
 import { useAuthSession } from '../../hooks/useAuthSession';
 import {
   createStoreReview,
@@ -56,6 +57,15 @@ function normalizeReviewError(error) {
   if (status === 404) return '리뷰를 찾을 수 없습니다.';
 
   return error.message || '리뷰 처리 중 오류가 발생했습니다.';
+}
+
+function buildImageFallback(className, label) {
+  return (
+    <div className={className}>
+      <ImageIcon size={18} />
+      <span>{label}</span>
+    </div>
+  );
 }
 
 export default function StoreReviewSection({
@@ -490,7 +500,12 @@ export default function StoreReviewSection({
               <div className={styles.imagePreviewGrid}>
                 {reviewImages.map((imageUrl, index) => (
                   <div key={`${imageUrl}-${index}`} className={styles.imagePreviewCard}>
-                    <img src={imageUrl} alt={`리뷰 사진 ${index + 1}`} className={styles.imagePreviewImage} />
+                    <SafeImage
+                      src={imageUrl}
+                      alt={`리뷰 사진 ${index + 1}`}
+                      className={styles.imagePreviewImage}
+                      fallback={buildImageFallback(styles.imagePreviewFallback, '사진을 불러올 수 없습니다')}
+                    />
                     <button
                       type="button"
                       className={styles.imageRemoveButton}
@@ -570,11 +585,12 @@ export default function StoreReviewSection({
               {Array.isArray(review.imageUrls) && review.imageUrls.length > 0 && (
                 <div className={styles.reviewImageGrid}>
                   {review.imageUrls.map((imageUrl, index) => (
-                    <img
+                    <SafeImage
                       key={`${review.reviewId}-${imageUrl}-${index}`}
                       src={imageUrl}
                       alt={`${review.displayName}의 리뷰 사진 ${index + 1}`}
                       className={styles.reviewImage}
+                      fallback={buildImageFallback(styles.reviewImageFallback, '사진을 불러올 수 없습니다')}
                     />
                   ))}
                 </div>

@@ -19,6 +19,7 @@ test('mapStoreToPlace preserves canonical menu and closure fields', () => {
     closureRequestStatus: 'PENDING',
     liveBusinessStatus: 'OPEN',
     deletedAt: null,
+    imageUrls: ['/api/v1/files/view?fileId=store-1', 'https://cdn.example.com/store-2.png', 'placeholder'],
   });
 
   assert.equal(mapped.id, 'abc-123');
@@ -28,6 +29,12 @@ test('mapStoreToPlace preserves canonical menu and closure fields', () => {
   assert.equal(mapped.menuEditable, false);
   assert.equal(mapped.operationalState, 'CLOSURE_REQUESTED');
   assert.equal(mapped.closureRequestStatus, 'PENDING');
+  assert.deepEqual(mapped.imageUrls, [
+    'http://localhost:8080/api/v1/files/view?fileId=store-1',
+    'https://cdn.example.com/store-2.png',
+  ]);
+  assert.deepEqual(mapped.images, mapped.imageUrls);
+  assert.deepEqual(mapped.ownerImages, mapped.imageUrls);
 });
 
 test('mapStoreToPlace marks deleted stores as closed for display', () => {

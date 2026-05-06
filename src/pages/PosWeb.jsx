@@ -17,6 +17,7 @@ import {
   updateOwnerStoreStatus,
 } from '../lib/owner';
 import { stripPlaceholderImageUrls, uploadFiles } from '../lib/files';
+import { resolveBrowserImageUrls } from '../lib/imageUrls';
 import { resolveStoreClosureUiState } from '../lib/storeContracts';
 import { getApplicationStatusMeta } from '../lib/ownerApplicationUi';
 import styles from './PosWeb.module.css';
@@ -160,7 +161,7 @@ export default function PosWeb() {
     if (selectedStore) {
       setStoreStatus(selectedStore.liveBusinessStatus);
       setOwnerCommentState(selectedStore.ownerNotice || '');
-      setStoreImagesState(stripPlaceholderImageUrls(selectedStore.imageUrls || [], DEFAULT_STORE_IMAGES).slice(0, MAX_OWNER_IMAGES));
+      setStoreImagesState(resolveBrowserImageUrls(stripPlaceholderImageUrls(selectedStore.imageUrls || [], DEFAULT_STORE_IMAGES)).slice(0, MAX_OWNER_IMAGES));
       setImageUploadError('');
       setOpenTime(selectedStore.openTime || '09:00');
       setCloseTime(selectedStore.closeTime || '21:00');

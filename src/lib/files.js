@@ -1,4 +1,8 @@
 import { apiRequest } from './api.js';
+import {
+  normalizeImageUrlForStorage,
+  resolveBrowserImageUrl,
+} from './imageUrls.js';
 import { getAuthHeaders } from './session.js';
 
 export const FILE_UPLOAD_ENDPOINTS = {
@@ -73,10 +77,14 @@ export function validateUploadFile(file, dir) {
 }
 
 export function stripPlaceholderImageUrls(imageUrls = [], placeholderUrls = []) {
-  const placeholders = new Set((placeholderUrls || []).filter(Boolean));
+  const placeholders = new Set(
+    (placeholderUrls || [])
+      .map(normalizeImageUrlForStorage)
+      .filter(Boolean)
+  );
 
   return (Array.isArray(imageUrls) ? imageUrls : [])
-    .map((imageUrl) => String(imageUrl || '').trim())
+    .map(normalizeImageUrlForStorage)
     .filter((imageUrl) => imageUrl && !placeholders.has(imageUrl));
 }
 
@@ -93,7 +101,7 @@ export async function uploadFile(file, dir) {
   });
 
   return {
-    url: data?.url || '',
+    url: resolveBrowserImageUrl(data?.url || ''),
     key: data?.key || '',
   };
 }

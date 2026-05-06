@@ -316,7 +316,7 @@ export default function HomeWeb() {
     <div className={styles.webContainer}>
       {/* 웹 전용 글로벌 헤더 */}
       <header className={styles.webHeader}>
-        <div className={styles.logoGroup} onClick={() => navigate('/mapweb')}>
+        <div className={styles.logoGroup} onClick={() => navigate('/web')}>
           <img src={toggleLogo} alt="Toggle logo" className={styles.logoMark} />
           <span className={styles.logoText}>Toggle</span>
         </div>

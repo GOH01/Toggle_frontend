@@ -1,4 +1,5 @@
 import { apiRequest } from './api.js';
+import { resolveBrowserImageUrls } from './imageUrls.js';
 import { getAuthHeaders } from './session.js';
 
 const ALLOWED_SORTS = new Set(['latest', 'rating_desc', 'rating_asc']);
@@ -46,6 +47,8 @@ export function buildStoreReviewQueryParams({ sort = DEFAULT_SORT, page = DEFAUL
 export function mapStoreReviewItem(item) {
   if (!item) return null;
 
+  const reviewImageUrls = resolveBrowserImageUrls(item.imageUrls || item.reviewImageUrls || item.images || item.photoUrls || item.photos || []);
+
   return {
     reviewId: item.reviewId,
     storeId: item.storeId,
@@ -53,9 +56,7 @@ export function mapStoreReviewItem(item) {
     displayName: item.displayName || '사용자',
     rating: Number(item.rating ?? 0),
     content: item.content || '',
-    imageUrls: Array.isArray(item.imageUrls)
-      ? item.imageUrls.filter((imageUrl) => Boolean(String(imageUrl || '').trim()))
-      : [],
+    imageUrls: reviewImageUrls,
     createdAt: item.createdAt || null,
     updatedAt: item.updatedAt || null,
   };

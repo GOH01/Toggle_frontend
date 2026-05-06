@@ -1,6 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { AlertCircle, ChevronLeft, Clock, Heart, Image as ImageIcon, MapPin, Navigation, Phone, Share2, Star } from 'lucide-react';
 import StatusBadge from '../common/StatusBadge';
+import SafeImage from '../common/SafeImage';
 import StoreMenuPanel from '../menus/StoreMenuPanel';
 import StoreReviewSection from '../reviews/StoreReviewSection';
 import { collectStoreCoverImages } from '../../lib/storeImages';
@@ -19,6 +20,15 @@ function formatText(value, fallback = '정보 없음') {
   return text || fallback;
 }
 
+function buildFallbackNode(className, label) {
+  return (
+    <div className={className}>
+      <ImageIcon size={24} />
+      <span>{label}</span>
+    </div>
+  );
+}
+
 function renderHeroPhotos(images, storeName) {
   const visibleImages = images.slice(0, 4);
   const remainingCount = Math.max(0, images.length - visibleImages.length);
@@ -35,7 +45,12 @@ function renderHeroPhotos(images, storeName) {
   if (visibleImages.length === 1) {
     return (
       <div className={styles.heroSingle}>
-        <img src={visibleImages[0]} alt={storeName} className={styles.heroImage} />
+        <SafeImage
+          src={visibleImages[0]}
+          alt={storeName}
+          className={styles.heroImage}
+          fallback={buildFallbackNode(styles.heroFallback, '사진을 불러올 수 없습니다')}
+        />
       </div>
     );
   }
@@ -45,7 +60,12 @@ function renderHeroPhotos(images, storeName) {
       <div className={styles.heroPair}>
         {visibleImages.map((imageUrl, index) => (
           <div key={`${imageUrl}-${index}`} className={styles.heroTile}>
-            <img src={imageUrl} alt={`${storeName} 사진 ${index + 1}`} className={styles.heroImage} />
+            <SafeImage
+              src={imageUrl}
+              alt={`${storeName} 사진 ${index + 1}`}
+              className={styles.heroImage}
+              fallback={buildFallbackNode(styles.heroFallback, '사진을 불러올 수 없습니다')}
+            />
           </div>
         ))}
       </div>
@@ -55,14 +75,24 @@ function renderHeroPhotos(images, storeName) {
   return (
     <div className={styles.heroCollage}>
       <div className={`${styles.heroTile} ${styles.heroPrimary}`}>
-        <img src={visibleImages[0]} alt={`${storeName} 대표 사진`} className={styles.heroImage} />
+        <SafeImage
+          src={visibleImages[0]}
+          alt={`${storeName} 대표 사진`}
+          className={styles.heroImage}
+          fallback={buildFallbackNode(styles.heroFallback, '사진을 불러올 수 없습니다')}
+        />
       </div>
       <div className={styles.heroGrid}>
         {visibleImages.slice(1).map((imageUrl, index) => {
           const isLastTile = index === 2 && remainingCount > 0;
           return (
             <div key={`${imageUrl}-${index}`} className={styles.heroTile}>
-              <img src={imageUrl} alt={`${storeName} 사진 ${index + 2}`} className={styles.heroImage} />
+              <SafeImage
+                src={imageUrl}
+                alt={`${storeName} 사진 ${index + 2}`}
+                className={styles.heroImage}
+                fallback={buildFallbackNode(styles.heroFallback, '사진을 불러올 수 없습니다')}
+              />
               {isLastTile && (
                 <div className={styles.heroOverlay}>
                   <ImageIcon size={24} />
@@ -94,7 +124,12 @@ function PhotoGrid({ images, storeName }) {
     <div className={styles.photoGrid}>
       {images.map((imageUrl, index) => (
         <figure key={`${imageUrl}-${index}`} className={styles.photoCard}>
-          <img src={imageUrl} alt={`${storeName} 사진 ${index + 1}`} className={styles.photoImage} />
+          <SafeImage
+            src={imageUrl}
+            alt={`${storeName} 사진 ${index + 1}`}
+            className={styles.photoImage}
+            fallback={buildFallbackNode(styles.photoFallback, '사진을 불러올 수 없습니다')}
+          />
         </figure>
       ))}
     </div>

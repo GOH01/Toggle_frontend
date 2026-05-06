@@ -74,7 +74,7 @@ test('uploadFile posts multipart payload to the matching backend endpoint', asyn
     return new Response(JSON.stringify({
       success: true,
       data: {
-        url: 'https://cdn.example.com/store/store-photo.png',
+        url: '/api/v1/files/view?key=store%2F123e4567-store_photo_01.png',
         key: 'store/123e4567-store_photo_01.png',
       },
     }), {
@@ -90,7 +90,7 @@ test('uploadFile posts multipart payload to the matching backend endpoint', asyn
     );
 
     assert.deepEqual(result, {
-      url: 'https://cdn.example.com/store/store-photo.png',
+      url: 'http://localhost:8080/api/v1/files/view?key=store%2F123e4567-store_photo_01.png',
       key: 'store/123e4567-store_photo_01.png',
     });
   } finally {

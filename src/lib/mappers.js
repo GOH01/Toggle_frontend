@@ -1,10 +1,11 @@
-import { STATUS_TYPES } from '../constants/status';
+import { STATUS_TYPES } from '../constants/status.js';
 import {
   normalizeSearchCategory,
   normalizeUiCategory,
   resolveDisplayCategory,
-} from './placeCategories';
-import { resolveStoreMenuAccess } from './storeContracts';
+} from './placeCategories.js';
+import { resolveBrowserImageUrls } from './imageUrls.js';
+import { resolveStoreMenuAccess } from './storeContracts.js';
 
 /**
  * 백엔드 스토어 DTO를 프론트엔드 장소 객체로 변환하는 통합 매퍼
@@ -17,6 +18,14 @@ export function mapStoreToPlace(item) {
   const storeStatus = !isVerifiedStore
     ? STATUS_TYPES.STORE.UNREGISTERED
     : (menuAccess.isInactive ? STATUS_TYPES.STORE.CLOSED : (item.liveBusinessStatus || item.businessStatus));
+  const storeImageUrls = resolveBrowserImageUrls([
+    ...(Array.isArray(item.imageUrls) ? item.imageUrls : []),
+    ...(Array.isArray(item.images) ? item.images : []),
+    ...(Array.isArray(item.ownerImages) ? item.ownerImages : []),
+    ...(Array.isArray(item.coverImages) ? item.coverImages : []),
+    ...(Array.isArray(item.storeImages) ? item.storeImages : []),
+    ...(Array.isArray(item.storeImageUrls) ? item.storeImageUrls : []),
+  ]);
 
   return {
     id: String(item.externalPlaceId || item.storeId),
@@ -39,9 +48,11 @@ export function mapStoreToPlace(item) {
     favorites: item.favoriteCount ?? item.favorites ?? 0,
     favoriteCountAvailable: isVerifiedStore,
     rating: item.reviewAverageRating ?? item.rating ?? null,
-    images: item.imageUrls || [],
+    imageUrls: storeImageUrls,
+    images: storeImageUrls,
     ownerNotice: item.ownerNotice || '',
-    ownerImages: item.imageUrls || [],
+    ownerImages: storeImageUrls,
+    coverImages: storeImageUrls,
     lat: Number(item.latitude ?? 37.5665),
     lng: Number(item.longitude ?? 126.9780),
     objType: 'STORE',

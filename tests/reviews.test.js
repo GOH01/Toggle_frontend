@@ -66,9 +66,12 @@ test('mapStoreReviewPageResponse preserves review image urls', () => {
     content: [{
       reviewId: 2,
       rating: 4,
-      imageUrls: ['https://cdn.example.com/review/1.png', null, ''],
+      reviewImageUrls: ['/api/v1/files/view?key=review%2F1.png', null, '', 'https://cdn.example.com/review/2.png'],
     }],
   });
 
-  assert.deepEqual(response.content[0].imageUrls, ['https://cdn.example.com/review/1.png']);
+  assert.deepEqual(response.content[0].imageUrls, [
+    'http://localhost:8080/api/v1/files/view?key=review%2F1.png',
+    'https://cdn.example.com/review/2.png',
+  ]);
 });

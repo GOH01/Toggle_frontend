@@ -1,6 +1,6 @@
 /* LandingWeb.module.css */
 .container {
-  width: 100vw;
+  width: 100%;
   min-height: 100vh;
   background-color: #0f172a; /* Deep UI base */
   color: white;
@@ -124,17 +124,516 @@
 .mainSection {
   position: relative;
   flex: 1;
-  display: flex;
-  align-items: center;
-  padding: 0 8rem;
+  display: block;
+  width: 100%;
+  padding: 3rem 4rem 0;
   overflow: hidden;
+}
+
+.heroLayout {
+  position: relative;
+  width: 100%;
+  min-height: calc(100vh - 80px - 3rem);
 }
 
 .heroContent {
   position: relative;
-  z-index: 10;
-  max-width: 800px;
+  z-index: 3;
+  width: min(54vw, 760px);
+  max-width: 760px;
+  padding: 4.5rem 0 6rem;
   animation: fadeInUp 1s ease-out;
+}
+
+.heroVisual {
+  position: absolute;
+  inset: -1rem -4rem -1rem 40%;
+  z-index: 1;
+  display: block;
+  pointer-events: none;
+}
+
+.visualStage {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background:
+    var(--map-bg) center center / cover no-repeat,
+    radial-gradient(circle at 58% 52%, rgba(34, 211, 238, 0.22) 0%, rgba(34, 211, 238, 0.09) 16%, rgba(15, 23, 42, 0) 38%),
+    radial-gradient(circle at 54% 48%, rgba(139, 92, 246, 0.18) 0%, rgba(139, 92, 246, 0.06) 14%, rgba(15, 23, 42, 0) 34%),
+    radial-gradient(circle at 50% 55%, rgba(56, 189, 248, 0.10) 0%, rgba(56, 189, 248, 0.04) 26%, rgba(15, 23, 42, 0) 54%);
+  border: none;
+  box-shadow: none;
+  isolation: isolate;
+  overflow: visible;
+  filter: saturate(1.1) brightness(0.8) contrast(1.05);
+}
+
+.visualStage::before,
+.visualStage::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.visualStage::before {
+  background:
+    linear-gradient(90deg, rgba(6, 10, 25, 0.14) 0%, rgba(6, 10, 25, 0.46) 25%, rgba(6, 10, 25, 0.1) 55%, rgba(6, 10, 25, 0.38) 100%),
+    linear-gradient(180deg, rgba(15, 23, 42, 0.26), rgba(15, 23, 42, 0.12)),
+    repeating-linear-gradient(90deg, rgba(148, 163, 184, 0.05) 0 1px, transparent 1px 88px),
+    repeating-linear-gradient(0deg, rgba(148, 163, 184, 0.04) 0 1px, transparent 1px 88px);
+  opacity: 0.7;
+  mask-image: linear-gradient(90deg, transparent 0%, black 10%, black 100%);
+}
+
+.visualStage::after {
+  background:
+    radial-gradient(circle at 58% 54%, rgba(34, 211, 238, 0.16) 0, rgba(34, 211, 238, 0.08) 12%, transparent 40%),
+    radial-gradient(circle at 54% 50%, rgba(139, 92, 246, 0.18) 0, rgba(139, 92, 246, 0.05) 18%, transparent 46%),
+    radial-gradient(circle at 50% 60%, rgba(244, 114, 182, 0.10) 0, transparent 30%);
+  filter: blur(10px);
+  opacity: 0.95;
+}
+
+.visualMapGlow {
+  position: absolute;
+  inset: 6% 2% 4% 0%;
+  background:
+    radial-gradient(circle at 58% 52%, rgba(34, 211, 238, 0.26) 0%, rgba(34, 211, 238, 0.05) 28%, transparent 60%),
+    radial-gradient(circle at 55% 46%, rgba(167, 139, 250, 0.18) 0%, rgba(167, 139, 250, 0.04) 20%, transparent 62%),
+    radial-gradient(circle at 58% 58%, rgba(45, 212, 191, 0.14) 0%, transparent 30%);
+  filter: blur(38px);
+  opacity: 0.95;
+}
+
+.visualGrid {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(160deg, transparent 0 44%, rgba(34, 211, 238, 0.05) 44% 45%, transparent 45%),
+    linear-gradient(24deg, transparent 0 48%, rgba(167, 139, 250, 0.08) 48% 49%, transparent 49%),
+    radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.02) 0, transparent 58%);
+  opacity: 0.9;
+}
+
+.visualRoad {
+  position: absolute;
+  inset: 0;
+  opacity: 0.9;
+}
+
+.visualRoad::before,
+.visualRoad::after {
+  content: '';
+  position: absolute;
+  border-radius: 999px;
+}
+
+.visualRoadPrimary::before {
+  width: 140%;
+  height: 22px;
+  left: -18%;
+  top: 48%;
+  background: linear-gradient(90deg, transparent, rgba(34, 211, 238, 0.18), rgba(56, 189, 248, 0.42), rgba(34, 211, 238, 0.18), transparent);
+  transform: rotate(-16deg);
+  filter: blur(0.5px);
+}
+
+.visualRoadPrimary::after {
+  width: 54%;
+  height: 54%;
+  right: 3%;
+  top: 12%;
+  border: 2px dashed rgba(34, 211, 238, 0.34);
+  border-color: rgba(34, 211, 238, 0.45) transparent transparent transparent;
+  transform: rotate(24deg);
+  filter: drop-shadow(0 0 14px rgba(34, 211, 238, 0.2));
+}
+
+.visualRoadSecondary::before {
+  width: 138%;
+  height: 18px;
+  left: -16%;
+  top: 28%;
+  background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.1), rgba(99, 102, 241, 0.34), rgba(139, 92, 246, 0.1), transparent);
+  transform: rotate(32deg);
+}
+
+.visualRoadSecondary::after {
+  width: 58%;
+  height: 58%;
+  left: 10%;
+  top: 31%;
+  border: 1px solid rgba(96, 165, 250, 0.12);
+  border-top-color: rgba(34, 211, 238, 0.24);
+  transform: rotate(-12deg);
+  filter: blur(0.2px);
+}
+
+.visualRoadTertiary::before {
+  width: 140%;
+  height: 18px;
+  left: -18%;
+  top: 72%;
+  background: linear-gradient(90deg, transparent, rgba(236, 72, 153, 0.12), rgba(244, 114, 182, 0.28), rgba(236, 72, 153, 0.12), transparent);
+  transform: rotate(-28deg);
+}
+
+.visualRoadTertiary::after {
+  width: 48%;
+  height: 48%;
+  right: 10%;
+  bottom: 10%;
+  border: 1px dashed rgba(244, 114, 182, 0.38);
+  border-color: transparent transparent rgba(244, 114, 182, 0.45) transparent;
+  transform: rotate(18deg);
+}
+
+.visualOrbit {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px dashed rgba(148, 163, 184, 0.18);
+  filter: drop-shadow(0 0 14px rgba(59, 130, 246, 0.08));
+}
+
+.visualOrbitOne {
+  width: 74%;
+  height: 74%;
+  left: 8%;
+  top: 8%;
+  border-color: rgba(34, 211, 238, 0.22);
+}
+
+.visualOrbitTwo {
+  width: 54%;
+  height: 54%;
+  left: 22%;
+  top: 22%;
+  border-color: rgba(139, 92, 246, 0.16);
+}
+
+.visualOrbitThree {
+  width: 30%;
+  height: 30%;
+  left: 35%;
+  top: 35%;
+  border-color: rgba(244, 114, 182, 0.14);
+}
+
+.visualNode {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  box-shadow: 0 0 0 6px rgba(34, 211, 238, 0.06), 0 0 22px rgba(34, 211, 238, 0.55);
+  background: #22d3ee;
+}
+
+.visualNodeOne {
+  left: 18%;
+  top: 24%;
+}
+
+.visualNodeTwo {
+  right: 20%;
+  top: 18%;
+  background: #8b5cf6;
+  box-shadow: 0 0 0 6px rgba(139, 92, 246, 0.06), 0 0 22px rgba(139, 92, 246, 0.52);
+}
+
+.visualNodeThree {
+  left: 14%;
+  bottom: 16%;
+  background: #2dd4bf;
+  box-shadow: 0 0 0 6px rgba(45, 212, 191, 0.06), 0 0 20px rgba(45, 212, 191, 0.5);
+}
+
+.visualNodeFour {
+  right: 16%;
+  bottom: 24%;
+  background: #f472b6;
+  box-shadow: 0 0 0 6px rgba(244, 114, 182, 0.06), 0 0 20px rgba(244, 114, 182, 0.5);
+}
+
+.centerBeacon {
+  position: absolute;
+  inset: 50% auto auto 50%;
+  width: 360px;
+  height: 360px;
+  transform: translate(-42%, -44%);
+  display: grid;
+  place-items: center;
+  z-index: 4;
+}
+
+.centerBeaconGlow {
+  position: absolute;
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle, rgba(34, 211, 238, 0.65) 0%, rgba(34, 211, 238, 0.22) 34%, transparent 70%),
+    radial-gradient(circle, rgba(139, 92, 246, 0.3) 0%, transparent 65%);
+  filter: blur(28px);
+  opacity: 0.8;
+  animation: beaconPulse 3s ease-in-out infinite;
+}
+
+.centerLogoShell {
+  position: relative;
+  width: 260px;
+  height: 260px;
+  border-radius: 48px;
+  display: grid;
+  place-items: center;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  animation: floatLogo 2.8s ease-in-out infinite;
+}
+
+.centerLogoShell::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(34, 211, 238, 0.85), rgba(139, 92, 246, 0.7), rgba(45, 212, 191, 0.85));
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  opacity: 0;
+}
+
+.centerLogoShell::after {
+  content: '';
+  position: absolute;
+  inset: 26px;
+  border-radius: 32px;
+  background:
+    radial-gradient(circle at 50% 35%, rgba(255, 255, 255, 0.08), transparent 55%),
+    radial-gradient(circle at 50% 85%, rgba(139, 92, 246, 0.22), transparent 70%);
+  pointer-events: none;
+  filter: blur(4px);
+  opacity: 0;
+}
+
+.centerLogo {
+  position: relative;
+  width: 176px;
+  height: 176px;
+  object-fit: contain;
+  filter:
+    drop-shadow(0 0 28px rgba(34, 211, 238, 0.75))
+    drop-shadow(0 0 52px rgba(139, 92, 246, 0.42));
+  z-index: 1;
+}
+
+.centerBeacon::after {
+  content: '';
+  position: absolute;
+  width: 390px;
+  height: 110px;
+  left: 50%;
+  top: 74%;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(100, 117, 255, 0.9) 0%, rgba(100, 117, 255, 0.42) 28%, rgba(100, 117, 255, 0.08) 58%, transparent 74%);
+  filter: blur(12px);
+  opacity: 0.85;
+}
+
+.statusCard {
+  position: absolute;
+  z-index: 5;
+  min-width: 170px;
+  max-width: 225px;
+  padding: 0.9rem 1rem;
+  border-radius: 18px;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  background: rgba(9, 14, 28, 0.66);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow:
+    0 18px 40px rgba(2, 6, 23, 0.42),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(14px);
+}
+
+.statusCard strong {
+  display: block;
+  font-size: 0.96rem;
+  line-height: 1.2;
+  color: #f8fafc;
+}
+
+.statusContent {
+  display: flex;
+  flex-direction: column;
+  gap: 0.14rem;
+}
+
+.statusLabel {
+  color: #e2e8f0;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.statusMeta {
+  color: #94a3b8;
+  font-size: 0.78rem;
+}
+
+.statusDot {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  margin-top: 0.28rem;
+  flex-shrink: 0;
+  box-shadow: 0 0 14px currentColor;
+}
+
+.statusDotOpen {
+  color: #2dd4bf;
+  background: #2dd4bf;
+  box-shadow: 0 0 14px rgba(45, 212, 191, 0.95);
+}
+
+.statusDotBreak {
+  color: #fb923c;
+  background: #fb923c;
+  box-shadow: 0 0 14px rgba(251, 146, 60, 0.95);
+}
+
+.statusDotClosed {
+  color: #8b5cf6;
+  background: #8b5cf6;
+  box-shadow: 0 0 14px rgba(139, 92, 246, 0.95);
+}
+
+.statusDotTemp {
+  color: #f472b6;
+  background: #f472b6;
+  box-shadow: 0 0 14px rgba(244, 114, 182, 0.95);
+}
+
+.statusTopRight {
+  top: 16%;
+  right: 10%;
+  animation: statusFloat 5s ease-in-out infinite;
+}
+
+.statusLeft {
+  left: 10%;
+  top: 47%;
+  animation: statusFloat 5.4s ease-in-out infinite reverse;
+}
+
+.statusBottomRight {
+  right: 11%;
+  bottom: 18%;
+  animation: statusFloat 5.2s ease-in-out infinite;
+}
+
+.statusBottomLeft {
+  left: 20%;
+  bottom: 10%;
+  animation: statusFloat 5.8s ease-in-out infinite reverse;
+}
+
+.mapPin {
+  position: absolute;
+  width: 26px;
+  height: 36px;
+  border-radius: 20px 20px 20px 0;
+  transform: rotate(-45deg);
+  z-index: 3;
+  filter: drop-shadow(0 0 18px rgba(34, 211, 238, 0.25));
+  animation: pinBob 3.4s ease-in-out infinite;
+}
+
+.mapPin::before {
+  content: '';
+  position: absolute;
+  inset: 6px;
+  border-radius: 50%;
+  background: rgba(15, 23, 42, 0.88);
+}
+
+.mapPin::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: inset 0 0 0 2px currentColor;
+}
+
+.mapPinOpen {
+  color: #2dd4bf;
+  background: rgba(45, 212, 191, 0.92);
+}
+
+.mapPinBreak {
+  color: #fb923c;
+  background: rgba(251, 146, 60, 0.92);
+}
+
+.mapPinClosed {
+  color: #8b5cf6;
+  background: rgba(139, 92, 246, 0.92);
+}
+
+.mapPinTemp {
+  color: #f472b6;
+  background: rgba(244, 114, 182, 0.92);
+}
+
+.pinOne {
+  left: 20%;
+  top: 24%;
+}
+
+.pinTwo {
+  right: 24%;
+  top: 28%;
+  animation-delay: 0.3s;
+}
+
+.pinThree {
+  left: 18%;
+  bottom: 18%;
+  animation-delay: 0.6s;
+}
+
+.pinFour {
+  right: 18%;
+  bottom: 15%;
+  animation-delay: 0.9s;
+}
+
+@keyframes floatLogo {
+  0%, 100% { transform: translateY(-6px) scale(1); }
+  50% { transform: translateY(8px) scale(1.02); }
+}
+
+@keyframes beaconPulse {
+  0%, 100% { transform: scale(0.96); opacity: 0.6; }
+  50% { transform: scale(1.08); opacity: 1; }
+}
+
+@keyframes statusFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-7px); }
+}
+
+@keyframes pinBob {
+  0%, 100% { transform: rotate(-45deg) translateY(0); }
+  50% { transform: rotate(-45deg) translateY(-6px); }
 }
 
 @keyframes fadeInUp {
@@ -362,7 +861,10 @@
    ======================================================== */
 
 @media (max-width: 1024px) {
-  .mainSection { padding: 0 4rem; }
+  .mainSection { padding: 2rem 2rem 0; }
+  .heroLayout { min-height: auto; }
+  .heroContent { width: min(60vw, 760px); padding: 2rem 0 0; }
+  .heroVisual { inset: 0 -2rem 0 32%; }
   .features { padding: 4rem 4rem; }
   .footer { padding: 4rem 4rem; }
   .title { font-size: clamp(2.75rem, 6vw, 4rem); max-width: 16ch; }
@@ -371,8 +873,27 @@
 @media (max-width: 768px) {
   .navbar { padding: 0 1rem; height: 60px; }
   .navLinks { display: none; }
-  .mainSection { padding: 0 1.5rem; justify-content: center; text-align: center; min-height: 80vh; }
-  .heroContent { display: flex; flex-direction: column; align-items: center; }
+  .mainSection { padding: 1.5rem 1rem 0; justify-content: center; text-align: center; min-height: 80vh; }
+  .heroLayout { min-height: auto; }
+  .heroContent { display: flex; flex-direction: column; align-items: center; width: 100%; max-width: 100%; padding-top: 1rem; }
+  .heroVisual { position: relative; inset: auto; width: calc(100% + 2rem); min-height: 380px; margin-top: 0.75rem; margin-left: -1rem; margin-right: -1rem; }
+  .visualStage {
+    width: 100%;
+    min-height: 380px;
+    aspect-ratio: auto;
+  }
+  .centerBeacon { width: 250px; height: 250px; transform: translate(-50%, -48%); }
+  .centerLogoShell { width: 200px; height: 200px; border-radius: 38px; }
+  .centerLogo { width: 120px; height: 120px; }
+  .statusCard { min-width: 150px; max-width: 180px; padding: 0.75rem 0.85rem; }
+  .statusTopRight { right: 4%; top: 10%; }
+  .statusLeft { left: 4%; top: 45%; }
+  .statusBottomRight { right: 5%; bottom: 14%; }
+  .statusBottomLeft { left: 8%; bottom: 10%; }
+  .pinOne { left: 18%; top: 18%; }
+  .pinTwo { right: 14%; top: 27%; }
+  .pinThree { left: 14%; bottom: 14%; }
+  .pinFour { right: 18%; bottom: 15%; }
   .title {
     font-size: clamp(2.5rem, 10vw, 3rem);
     max-width: 17ch;
@@ -393,4 +914,8 @@
   }
   .ctaGroup { flex-direction: column; width: 100%; }
   .primaryCta, .secondaryCta { width: 100%; justify-content: center; box-sizing: border-box; }
+  .heroVisual { min-height: 320px; }
+  .visualStage { min-height: 320px; }
+  .statusCard { display: none; }
+  .mapPin { width: 20px; height: 28px; }
 }
