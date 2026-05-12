@@ -1,5 +1,5 @@
 const API_BASE_URL = (typeof import.meta !== 'undefined' && import.meta.env && import.meta.env.VITE_API_BASE_URL)
-  || 'http://localhost:8080';
+  || 'http://13.124.62.85';
 
 export async function apiRequest(path, options = {}) {
   const { headers = {}, body, ...rest } = options;

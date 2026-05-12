@@ -11,7 +11,7 @@ test('SafeImage resolves backend-relative file-view urls in the rendered image s
     alt: '매장 대표 사진',
   }));
 
-  assert.match(markup, /<img[^>]+src="http:\/\/localhost:8080\/api\/v1\/files\/view\?fileId=store-hero"/);
+  assert.match(markup, /<img[^>]+src="http:\/\/13.124.62.85\/api\/v1\/files\/view\?fileId=store-hero"/);
   assert.match(markup, /alt="매장 대표 사진"/);
 });
 

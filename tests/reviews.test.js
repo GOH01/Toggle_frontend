@@ -71,7 +71,7 @@ test('mapStoreReviewPageResponse preserves review image urls', () => {
   });
 
   assert.deepEqual(response.content[0].imageUrls, [
-    'http://localhost:8080/api/v1/files/view?key=review%2F1.png',
+    'http://13.124.62.85/api/v1/files/view?key=review%2F1.png',
     'https://cdn.example.com/review/2.png',
   ]);
 });

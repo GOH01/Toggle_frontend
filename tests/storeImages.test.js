@@ -12,9 +12,9 @@ test('collectStoreCoverImages merges available store image sources', () => {
   });
 
   assert.deepEqual(images, [
-    'http://localhost:8080/api/v1/files/view?fileId=store-1',
+    'http://13.124.62.85/api/v1/files/view?fileId=store-1',
     'https://cdn.example.com/store-2.jpg',
-    'http://localhost:8080/api/v1/files/view?fileId=store-3',
+    'http://13.124.62.85/api/v1/files/view?fileId=store-3',
     'https://cdn.example.com/store-4.jpg',
   ]);
 });

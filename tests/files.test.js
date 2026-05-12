@@ -63,7 +63,7 @@ test('uploadFile posts multipart payload to the matching backend endpoint', asyn
   };
 
   globalThis.fetch = async (url, init) => {
-    assert.equal(url, 'http://localhost:8080/api/v1/files/store');
+    assert.equal(url, 'http://13.124.62.85/api/v1/files/store');
     assert.equal(init.method, 'POST');
     assert.ok(init.body instanceof FormData);
 
@@ -90,7 +90,7 @@ test('uploadFile posts multipart payload to the matching backend endpoint', asyn
     );
 
     assert.deepEqual(result, {
-      url: 'http://localhost:8080/api/v1/files/view?key=store%2F123e4567-store_photo_01.png',
+      url: 'http://13.124.62.85/api/v1/files/view?key=store%2F123e4567-store_photo_01.png',
       key: 'store/123e4567-store_photo_01.png',
     });
   } finally {
