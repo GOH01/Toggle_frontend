@@ -7,6 +7,7 @@ import {
   validateUploadFile,
   uploadFile,
 } from '../src/lib/files.js';
+import { API_BASE_URL } from '../src/lib/api.js';
 
 const DEFAULT_STORE_IMAGES = [
   'https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=200&q=80',
@@ -63,7 +64,7 @@ test('uploadFile posts multipart payload to the matching backend endpoint', asyn
   };
 
   globalThis.fetch = async (url, init) => {
-    assert.equal(url, 'http://13.124.62.85/api/v1/files/store');
+    assert.equal(url, `${API_BASE_URL}/api/v1/files/store`);
     assert.equal(init.method, 'POST');
     assert.ok(init.body instanceof FormData);
 
@@ -90,7 +91,7 @@ test('uploadFile posts multipart payload to the matching backend endpoint', asyn
     );
 
     assert.deepEqual(result, {
-      url: 'http://13.124.62.85/api/v1/files/view?key=store%2F123e4567-store_photo_01.png',
+      url: `${API_BASE_URL}/api/v1/files/view?key=store%2F123e4567-store_photo_01.png`,
       key: 'store/123e4567-store_photo_01.png',
     });
   } finally {

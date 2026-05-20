@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 
+import { API_BASE_URL } from '../src/lib/api.js';
 import { collectStoreCoverImages } from '../src/lib/storeImages.js';
 
 test('collectStoreCoverImages merges available store image sources', () => {
@@ -12,9 +13,9 @@ test('collectStoreCoverImages merges available store image sources', () => {
   });
 
   assert.deepEqual(images, [
-    'http://13.124.62.85/api/v1/files/view?fileId=store-1',
+    `${API_BASE_URL}/api/v1/files/view?fileId=store-1`,
     'https://cdn.example.com/store-2.jpg',
-    'http://13.124.62.85/api/v1/files/view?fileId=store-3',
+    `${API_BASE_URL}/api/v1/files/view?fileId=store-3`,
     'https://cdn.example.com/store-4.jpg',
   ]);
 });

@@ -4,6 +4,7 @@ import React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 
 import SafeImage from '../src/components/common/SafeImage.js';
+import { API_BASE_URL } from '../src/lib/api.js';
 
 test('SafeImage resolves backend-relative file-view urls in the rendered image source', () => {
   const markup = renderToStaticMarkup(React.createElement(SafeImage, {
@@ -11,7 +12,7 @@ test('SafeImage resolves backend-relative file-view urls in the rendered image s
     alt: '매장 대표 사진',
   }));
 
-  assert.match(markup, /<img[^>]+src="http:\/\/13.124.62.85\/api\/v1\/files\/view\?fileId=store-hero"/);
+  assert.match(markup, new RegExp(`<img[^>]+src="${API_BASE_URL.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\/api\\/v1\\/files\\/view\\?fileId=store-hero"`));
   assert.match(markup, /alt="매장 대표 사진"/);
 });
 

@@ -7,6 +7,7 @@ import {
   mapStoreReviewSummary,
   mapStoreReviewPageResponse,
 } from '../src/lib/reviews.js';
+import { API_BASE_URL } from '../src/lib/api.js';
 
 test('normalizeReviewSort defaults to latest', () => {
   assert.equal(normalizeReviewSort(), 'latest');
@@ -71,7 +72,7 @@ test('mapStoreReviewPageResponse preserves review image urls', () => {
   });
 
   assert.deepEqual(response.content[0].imageUrls, [
-    'http://13.124.62.85/api/v1/files/view?key=review%2F1.png',
+    `${API_BASE_URL}/api/v1/files/view?key=review%2F1.png`,
     'https://cdn.example.com/review/2.png',
   ]);
 });
