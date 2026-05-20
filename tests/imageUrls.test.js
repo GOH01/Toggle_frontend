@@ -7,7 +7,7 @@ import { resolveBrowserImageUrl, resolveBrowserImageUrls } from '../src/lib/imag
 test('resolveBrowserImageUrl expands backend-relative file view paths to the API origin', () => {
   assert.equal(
     resolveBrowserImageUrl('/api/v1/files/view?key=review%2F1.png'),
-    `${API_BASE_URL}/api/v1/files/view?key=review%2F1.png`
+    new URL('/api/v1/files/view?key=review%2F1.png', API_BASE_URL).href
   );
 });
 
@@ -20,7 +20,7 @@ test('resolveBrowserImageUrls filters blank values and keeps absolute URLs intac
       'https://cdn.example.com/store/2.png',
     ]),
     [
-      `${API_BASE_URL}/api/v1/files/view?key=store%2F1.png`,
+      new URL('/api/v1/files/view?key=store%2F1.png', API_BASE_URL).href,
       'https://cdn.example.com/store/2.png',
     ]
   );

@@ -13,9 +13,9 @@ test('collectStoreCoverImages merges available store image sources', () => {
   });
 
   assert.deepEqual(images, [
-    `${API_BASE_URL}/api/v1/files/view?fileId=store-1`,
+    new URL('/api/v1/files/view?fileId=store-1', API_BASE_URL).href,
     'https://cdn.example.com/store-2.jpg',
-    `${API_BASE_URL}/api/v1/files/view?fileId=store-3`,
+    new URL('/api/v1/files/view?fileId=store-3', API_BASE_URL).href,
     'https://cdn.example.com/store-4.jpg',
   ]);
 });

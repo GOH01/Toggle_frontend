@@ -1,5 +1,6 @@
 const API_BASE_URL = (typeof import.meta !== 'undefined' && import.meta.env && import.meta.env.VITE_API_BASE_URL)
-  || 'http://13.124.62.85:8089';
+  || 'http://13.124.62.85/';
+const API_REQUEST_BASE_URL = API_BASE_URL.replace(/\/+$/, '');
 
 export async function apiRequest(path, options = {}) {
   const { headers = {}, body, ...rest } = options;
@@ -8,7 +9,7 @@ export async function apiRequest(path, options = {}) {
   let response;
 
   try {
-    response = await fetch(`${API_BASE_URL}${path}`, {
+    response = await fetch(`${API_REQUEST_BASE_URL}${path}`, {
       headers: {
         ...(isFormData ? {} : { 'Content-Type': 'application/json' }),
         ...headers,

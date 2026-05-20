@@ -12,7 +12,9 @@ test('SafeImage resolves backend-relative file-view urls in the rendered image s
     alt: '매장 대표 사진',
   }));
 
-  assert.match(markup, new RegExp(`<img[^>]+src="${API_BASE_URL.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\/api\\/v1\\/files\\/view\\?fileId=store-hero"`));
+  assert.match(markup, new RegExp(
+    `<img[^>]+src="${new URL('/api/v1/files/view?fileId=store-hero', API_BASE_URL).href.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}"`
+  ));
   assert.match(markup, /alt="매장 대표 사진"/);
 });
 

@@ -31,7 +31,7 @@ test('mapStoreToPlace preserves canonical menu and closure fields', () => {
   assert.equal(mapped.operationalState, 'CLOSURE_REQUESTED');
   assert.equal(mapped.closureRequestStatus, 'PENDING');
   assert.deepEqual(mapped.imageUrls, [
-    `${API_BASE_URL}/api/v1/files/view?fileId=store-1`,
+    new URL('/api/v1/files/view?fileId=store-1', API_BASE_URL).href,
     'https://cdn.example.com/store-2.png',
   ]);
   assert.deepEqual(mapped.images, mapped.imageUrls);

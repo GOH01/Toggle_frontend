@@ -72,7 +72,7 @@ test('mapStoreReviewPageResponse preserves review image urls', () => {
   });
 
   assert.deepEqual(response.content[0].imageUrls, [
-    `${API_BASE_URL}/api/v1/files/view?key=review%2F1.png`,
+    new URL('/api/v1/files/view?key=review%2F1.png', API_BASE_URL).href,
     'https://cdn.example.com/review/2.png',
   ]);
 });
